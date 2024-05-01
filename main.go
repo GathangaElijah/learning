@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 
@@ -10,13 +11,21 @@ import (
 func main() {
 	// Sets how we view the errors from reading the commandline arguments
 	// ignoring the date and time.
-	log.SetPrefix(" Input Error: ")
+	
 	log.SetFlags(0)
 
 	args := os.Args[1:]
 	output, err := asciiart.InputReader(args)
+	log.SetPrefix("Input Error: ")
 	if err != nil {
 		log.Fatal(err)
 	}
-	asciiart.AsciiProcessor(output)
+	
+	asciiRep, err := asciiart.AsciiProcessor(output)
+	log.SetPrefix("Processing Error: ")
+	if err != nil {
+		return
+		//log.Fatal(err)
+	}
+	fmt.Println(asciiRep)
 }
