@@ -1,13 +1,9 @@
 package asciiart
 
-import "errors"
+// import "errors"
 
-func AsciiProcessor(txtInput string) (string, error) {
-	if txtInput == "" {
-		return "", errors.New("empty string")
-	} else if txtInput == "\n" {
-		return "\n", nil
-	}
-
-	return txtInput, nil
+func AsciiProcessor(txtInput string, asciiFile []byte) (string, error) {
+	
+	
 }
+

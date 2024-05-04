@@ -15,17 +15,17 @@ func main() {
 	log.SetFlags(0)
 
 	args := os.Args[1:]
-	output, err := asciiart.InputReader(args)
+	strInput, err := asciiart.InputReader(args)
 	log.SetPrefix("Input Error: ")
 	if err != nil {
 		log.Fatal(err)
 	}
 	
-	asciiRep, err := asciiart.AsciiProcessor(output)
+	asciiRep, err := asciiart.AsciiProcessor(strInput, asciiFile )
 	log.SetPrefix("Processing Error: ")
 	if err != nil {
-		return
-		//log.Fatal(err)
+		// return
+		log.Fatal(err)
 	}
 	fmt.Println(asciiRep)
 }

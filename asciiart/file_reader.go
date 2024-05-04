@@ -5,26 +5,26 @@ import (
 	"os"
 )
 
-func ShadowReader() {
+func ShadowReader() []byte {
 	shadowfile, err := os.ReadFile("shadow.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
-	os.Stdout.Write(shadowfile)
+	return shadowfile
 }
 
-func StandardReader() {
+func StandardReader() []byte {
 	standard_file, err := os.ReadFile("standard.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
-	os.Stdout.Write(standard_file)
+	return standard_file
 }
 
-func ThinkertoyReader() {
+func ThinkertoyReader() []byte {
 	thinkertoy_file, err := os.ReadFile("thinkertoy.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
-	os.Stdout.Write(thinkertoy_file)
+	return thinkertoy_file
 }
