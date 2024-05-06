@@ -20,7 +20,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	
+	asciiFile := asciiart.StandardReader()
 	asciiRep, err := asciiart.AsciiProcessor(strInput, asciiFile )
 	log.SetPrefix("Processing Error: ")
 	if err != nil {
