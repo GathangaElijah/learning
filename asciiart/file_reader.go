@@ -1,6 +1,7 @@
 package asciiart
 
 import (
+	"bufio"
 	"log"
 	"os"
 )
@@ -14,11 +15,25 @@ func ShadowReader() []byte {
 }
 
 func StandardReader() []byte {
-	standard_file, err := os.ReadFile("standard.txt")
+	standard_file, err := os.Open("standard.txt")
+	if err != nil {
+		log.Fatal(err)
+		return nil
+	}
+	defer standard_file.Close()
+	file_stat, err := standard_file.Stat()
 	if err != nil {
 		log.Fatal(err)
 	}
-	return standard_file
+	fileSize := file_stat.Size()
+	reader := bufio.NewReader(standard_file)
+	var standardData = make([]byte, fileSize)
+	_, err = reader.Read(standardData)
+	if err != nil {
+		log.Fatal(err)
+		return nil
+	}
+	return standardData
 }
 
 func ThinkertoyReader() []byte {
