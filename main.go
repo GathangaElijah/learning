@@ -24,8 +24,8 @@ func main() {
 	asciiRep, err := asciiart.AsciiProcessor(strInput, asciiFile )
 	log.SetPrefix("Processing Error: ")
 	if err != nil {
-		// return
-		log.Fatal(err)
+		return
+		// log.Fatal(err)
 	}
-	fmt.Println(asciiRep)
+	fmt.Print(asciiRep)
 }
