@@ -11,7 +11,6 @@ import (
 func main() {
 	// Sets how we view the errors from reading the commandline arguments
 	// ignoring the date and time.
-	
 	log.SetFlags(0)
 
 	args := os.Args[1:]
