@@ -7,11 +7,23 @@ import (
 )
 
 func ShadowReader() []byte {
-	shadowfile, err := os.ReadFile("shadow.txt")
+	shadow_file, err := os.Open("shadow.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
-	return shadowfile
+	defer shadow_file.Close()
+	file_stat, err := shadow_file.Stat()
+	if err != nil {
+		log.Fatal(err)
+	}
+	file_size := file_stat.Size()
+	reader := bufio.NewReader(shadow_file)
+	var shadow_data = make([]byte, file_size)
+	_, err = reader.Read(shadow_data)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return shadow_data
 }
 
 func StandardReader() []byte {
@@ -37,9 +49,21 @@ func StandardReader() []byte {
 }
 
 func ThinkertoyReader() []byte {
-	thinkertoy_file, err := os.ReadFile("thinkertoy.txt")
+	thinkertoy_file, err := os.Open("thinkertoy.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
-	return thinkertoy_file
+	defer thinkertoy_file.Close()
+	file_stat, err := thinkertoy_file.Stat()
+	if err != nil {
+		log.Fatal(err)
+	}
+	file_size := file_stat.Size()
+	var thinkertoyData = make([]byte, file_size)
+	reader := bufio.NewReader(thinkertoy_file)
+	_, err = reader.Read(thinkertoyData)
+	if err != nil {
+		log.Fatal()
+	}
+	return thinkertoyData
 }
