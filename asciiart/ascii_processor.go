@@ -5,14 +5,31 @@ import (
 	"strings"
 )
 
-func AsciiProcessor(txtInput string, asciiFile []byte) (string, error) {
+type asciiFiles struct {
+	thinkertoy, standard, shadow []byte
+}
+
+func AsciiProcessor(txtInput string, file *asciiFiles) (string, error) {
 	var output = ""
 	if txtInput == "" {
 		return "", errors.New("empty string")
 	} else if txtInput == "\\n" {
 		return "\n", nil
 	}
-	asciiChars := strings.Split(string(asciiFile), "\n")
+
+	if file == nil {
+		return "", errors.New("nil pointer")
+	}
+
+	var asciiChars []string
+	if file.thinkertoy != nil{
+		asciiChars = strings.Split(string(file.thinkertoy), "\n\r")
+	} else if file.standard != nil {
+		asciiChars = strings.Split(string(file.standard), "\n")
+	} else if file.shadow != nil{
+		asciiChars = strings.Split(string(file.shadow), "\n")
+	}
+
 	inputSubStr := strings.Split(txtInput, "\\n")
 
 	for _, txt := range inputSubStr {
