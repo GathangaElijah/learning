@@ -1,15 +1,13 @@
 package asciiart
 
 import (
+	"flag"
 	"errors"
+	"learning/asciiart/data"
 	"strings"
 )
 
-type asciiFiles struct {
-	thinkertoy, standard, shadow []byte
-}
-
-func AsciiProcessor(txtInput string, file *asciiFiles) (string, error) {
+func AsciiProcessor(txtInput string, file *data.AsciiFiles) (string, error) {
 	var output = ""
 	if txtInput == "" {
 		return "", errors.New("empty string")
@@ -22,13 +20,23 @@ func AsciiProcessor(txtInput string, file *asciiFiles) (string, error) {
 	}
 
 	var asciiChars []string
-	if file.thinkertoy != nil{
-		asciiChars = strings.Split(string(file.thinkertoy), "\n\r")
-	} else if file.standard != nil {
-		asciiChars = strings.Split(string(file.standard), "\n")
-	} else if file.shadow != nil{
-		asciiChars = strings.Split(string(file.shadow), "\n")
+	var asciiFlag string
+	flag.StringVar(&asciiFlag, "type", "", "Use st (Standard), th(thinkertoy, sh(shadow))")
+	flag.Parse()
+
+	switch asciiFlag{
+	case "th":
+		asciiChars = strings.Split(string(file.Thinkertoy), "\r\n")
+	case "st":
+		asciiChars = strings.Split(string(file.Standard), "\n")
+	case "sh":
+		asciiChars = strings.Split(string(file.Shadow), "\n")
+	default:
+		return "", errors.New("invalid flag type")
 	}
+	
+	// var standardFlag = flag.String("st", "", "use st for standard ascii")
+	// 	var shadowFlag = flag.String("sh", "", "use sh for shadow file")
 
 	inputSubStr := strings.Split(txtInput, "\\n")
 
