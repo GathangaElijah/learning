@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"learning/asciiart/asciiart"
+	"learning/asciiart/data"
 )
 
 func main() {
@@ -19,12 +20,22 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	asciiFile := asciiart.StandardReader()
-	asciiRep, err := asciiart.AsciiProcessor(strInput, asciiFile )
+	thinkertoyData := asciiart.ThinkertoyReader()
+	shadowData := asciiart.ShadowReader()
+	standardData := asciiart.StandardReader()
+	// This part creates an instance of the AsciiFiles struct
+	// which is in the data folder.
+	file := &data.AsciiFiles{
+		Thinkertoy: thinkertoyData,
+		Standard:   standardData,
+		Shadow:     shadowData,
+	}
+
+	asciiRep, err := asciiart.AsciiProcessor(strInput, file)
 	log.SetPrefix("Processing Error: ")
 	if err != nil {
-		return
-		// log.Fatal(err)
+		// return
+		log.Fatal(err)
 	}
 	fmt.Print(asciiRep)
 }
