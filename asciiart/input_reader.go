@@ -6,9 +6,9 @@ import (
 )
 
 func InputReader(strArgs []string) (string, error) {
-	if len(strArgs) != 1 {
+	if len(strArgs) != 3 {
 		return "", errors.New("the program requires a single string input")
 	}
-	argOutput := os.Args[1]
+	argOutput := os.Args[3]
 	return argOutput, nil
 }
