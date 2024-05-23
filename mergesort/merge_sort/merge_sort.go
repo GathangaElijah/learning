@@ -1,5 +1,5 @@
 package merge_sort
 
-function MergeSort(){
-	
+func MergeSort(){
+
 }
