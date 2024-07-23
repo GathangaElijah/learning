@@ -17,6 +17,10 @@ func LastWord(s string) string {
 			}
 		} else {
 			word += string(s[i])
+			if i == len(s)-1 && word != ""{
+				allWords = append(allWords, word)
+			}
+			
 		}
 
 	}
@@ -25,7 +29,7 @@ func LastWord(s string) string {
 }
 
 func main() {
-	fmt.Println(LastWord(" The    ... quick brown fox jumped over the lazy dog  "))
+	fmt.Println(LastWord(" The    ... quick brown fox jumped over the lazy dog"))
 	fmt.Println(LastWord(" The quick brown .... fox   jumped over the lazy "))
 	fmt.Println(LastWord("   The.quick.brown.fox    "))
 	fmt.Println(" ")
