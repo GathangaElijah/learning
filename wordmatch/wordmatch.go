@@ -5,16 +5,6 @@ import "fmt"
 func WdMatch(str1, str2 string) string{
 	// var charMap = make(map[rune]bool)
 	var result = ""
-	// for _, char := range str2{
-	// 	charMap[char] = true
-	// }
-	// for _, char2 := range str1{
-	// 	if _, ok := charMap[char2]; ok{
-	// 		result += string(char2)
-	// 	} else {
-	// 		return ""
-	// 	}
-	// }
 	start := 0
 	
 		for i := 0; i < len(str1); i++{
