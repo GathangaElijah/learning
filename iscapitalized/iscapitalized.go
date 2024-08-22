@@ -9,10 +9,7 @@ func isCapital(r rune)bool{
 	return false
 }
 func nonLetter(r rune)bool{
-	if !((r >= 'a' && r <= 'z') || r >= 'A' && r <= 'Z'){
-		return true
-	}
-	return false
+	return !((r >= 'a' && r <= 'z') || r >= 'A' && r <= 'Z')
 }
 
 func IsCapitalized(s string)bool{
