@@ -3,22 +3,23 @@ package main
 import "fmt"
 
 func ConcatAlternate(slice1, slice2 []int) []int {
-	var result []int
-	i := 0
-	len1, len2 := len(slice1), len(slice2)
-	if len1 >= len2{
-		for i = 0; i < len2; i++{
-			result = append(result, slice1[i], slice2[i])
+	len1 := len(slice1)
+	len2 := len(slice2)
+
+	var finalSlice []int
+	if len2 > len1{
+		for i := 0; i < len1; i++{
+			finalSlice = append(finalSlice, slice2[i], slice1[i])
 		}
-		result = append(result, slice1[i:]...)
-	} else{
-		for i = 0; i < len1;  i++{
-			result = append(result, slice2[i], slice1[i])
+		finalSlice = append(finalSlice, slice2[len1:]...)
+	}else {
+		for i := 0; i < len2; i ++{
+			finalSlice = append(finalSlice, slice1[i], slice2[i])
 		}
-		result = append(result, slice2[i:]...)
+		finalSlice = append(finalSlice, slice1[len2:]...)
 	}
 
-	return result
+	return finalSlice
 }
 
 func main() {
