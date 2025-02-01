@@ -52,5 +52,12 @@ func Process() {
 
 func main() {
 	// Process()
-	Launcher()
+	Launcher() //ex2
+
+	//ex3
+	var squareRootMapCache = sync.OnceValue(MapProcessor)
+
+	for i := 0; i < 100000; i += 1000{
+		fmt.Println(i, squareRootMapCache()[i])
+	}
 }
